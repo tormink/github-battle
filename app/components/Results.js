@@ -5,6 +5,7 @@ var queryString = require('query-string');
 var api = require('../utils/api');
 
 var PlayerPreview = require('./PlayerPreview');
+var Loading = require('./Loading');
 
 function Profile(props) {
     var info = props.info;
@@ -12,7 +13,7 @@ function Profile(props) {
         <PlayerPreview avatar={info.avatar_url} username={info.login}>
             <ul className="space-list-items">
                 {info.name && <li>{info.name}</li>}
-                {info.location<li>{info.location}</li>}
+                {info.location && <li>{info.location}</li>}
                 {info.company && <li>{info.company}</li>}
                 <li>Followers: {info.followers}</li>
                 <li>Following: {info.following}</li>
@@ -87,7 +88,7 @@ class Results extends React.Component {
         var loading = this.state.loading;
 
         if(loading) {
-            return <p>Loading...</p>
+            return <Loading/>
         }
 
         if(error) {
